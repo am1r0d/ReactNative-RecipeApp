@@ -9,8 +9,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: colors.white,
         padding: 10,
-        width: width * 0.6,
+        width: width * 0.7,
         marginVertical: 16,
+        marginTop: 46,
         // iOS
         shadowColor: "#000",
         shadowOffset: {
@@ -26,6 +27,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: colors.grey,
         fontWeight: "bold",
+        flex: 1,
     },
     row: {
         flexDirection: "row",
@@ -34,5 +36,11 @@ const styles = StyleSheet.create({
     footerText: { color: colors.lightGrey2, fontSize: 11 },
     authorImage: { width: 24, height: 24, marginRight: 8, borderRadius: 20 },
     timerIcon: { width: 17, height: 17, marginRight: 8 },
+    image: {
+        width: 80,
+        height: 80,
+        borderRadius: 50,
+        marginTop: -40,
+    },
 });
 export default styles;

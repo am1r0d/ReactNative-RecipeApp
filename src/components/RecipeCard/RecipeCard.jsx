@@ -6,9 +6,17 @@ const RecipeCard = ({ title, image, author, rating, time }) => {
     return (
         //
         <View style={styles.container}>
-            <Text numberOfLines={1} style={styles.title}>
-                {title}
-            </Text>
+            <View style={styles.row}>
+                <Text numberOfLines={1} style={styles.title}>
+                    {title}
+                </Text>
+                <Image
+                    style={styles.image}
+                    source={{
+                        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmkH0mfiD7EvLivall1hq0zkntcFg-yLtlTZv2KmMgye8Ip-Tl9w7zI_F7wBURa4iFQg4&usqp=CAU",
+                    }}
+                />
+            </View>
 
             {/*  */}
             <View style={[styles.row, { justifyContent: "space-between" }]}>
