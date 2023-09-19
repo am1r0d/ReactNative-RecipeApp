@@ -41,7 +41,7 @@ const Home = ({ navigation }) => {
 
             <FlatList
                 horizontal
-                data={[1, 2, 3]}
+                data={[1, 2, 3, 4]}
                 style={{ marginHorizontal: -24 }}
                 keyExtractor={(item) => String(item)}
                 showsHorizontalScrollIndicator={false}
