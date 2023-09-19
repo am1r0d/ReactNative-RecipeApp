@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FlatList, SafeAreaView } from "react-native";
 import styles from "./StylesHome";
 import Input from "../../components/Input/Input";
@@ -6,8 +6,11 @@ import Title from "../../components/Title/Title";
 import Categories from "../../components/Categories/Categories";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import Card from "../../components/Card/Card";
+import { RecipesContext } from "../../../App";
 
 const Home = ({ navigation }) => {
+    const { recipes } = useContext(RecipesContext);
+    console.log("recipes:>>", recipes);
     return (
         <SafeAreaView style={styles.container}>
             <Input pressable onPress={() => navigation.navigate("Search")} />

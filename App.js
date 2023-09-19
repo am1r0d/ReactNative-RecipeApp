@@ -5,9 +5,13 @@ import Search from "./src/screens/Search/Search";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import "react-native-gesture-handler";
+import React, { useState } from "react";
 
 // Stack navigation
 const Stack = createStackNavigator();
+
+// context
+export const RecipesContext = React.createContext();
 
 //
 const BackButton = (props) => {
@@ -29,33 +33,36 @@ const theme = {
 };
 
 export default function App() {
+    const [recipes, setRecipes] = useState([]);
     return (
-        <NavigationContainer theme={theme}>
-            <Stack.Navigator
-                screenOptions={{
-                    headerTitleAlign: "center",
-                    headerShadowVisible: false,
-                }}
-            >
-                <Stack.Screen
-                    name="Splash"
-                    component={Splash}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="Home"
-                    component={Home}
-                    options={{ headerLeft: null, gestureEnabled: false }}
-                />
-                <Stack.Screen
-                    name="Search"
-                    component={Search}
-                    options={{
-                        headerLeft: (props) => <BackButton {...props} />,
+        <RecipesContext.Provider value={{ recipes, setRecipes }}>
+            <NavigationContainer theme={theme}>
+                <Stack.Navigator
+                    screenOptions={{
+                        headerTitleAlign: "center",
+                        headerShadowVisible: false,
                     }}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
+                >
+                    <Stack.Screen
+                        name="Splash"
+                        component={Splash}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="Home"
+                        component={Home}
+                        options={{ headerLeft: null, gestureEnabled: false }}
+                    />
+                    <Stack.Screen
+                        name="Search"
+                        component={Search}
+                        options={{
+                            headerLeft: (props) => <BackButton {...props} />,
+                        }}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </RecipesContext.Provider>
     );
 }
 
