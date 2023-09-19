@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FlatList, SafeAreaView } from "react-native";
 import styles from "./StylesHome";
 import Input from "../../components/Input/Input";
@@ -9,11 +9,27 @@ import Card from "../../components/Card/Card";
 import { HealthyRecipesContext, RecipesContext } from "../../../App";
 
 const Home = ({ navigation }) => {
+    // useState
     const { recipes } = useContext(RecipesContext);
     const { healthyRecipes } = useContext(HealthyRecipesContext);
+    const [tags, setTags] = useState([]);
+    const [selectedTag, setSelectedTag] = useState();
 
-    // console.log("recipes:>>", recipes);
-    console.log("healthyRecipes:>>", healthyRecipes);
+    // useEffect
+    useEffect(() => {
+        const tagsList = [];
+
+        recipes?.forEach((recipe) => {
+            recipe?.tags?.forEach((tag) => {
+                if (!tagsList?.includes(tag?.name)) {
+                    tagsList?.push(tag?.name);
+                }
+            });
+        });
+
+        setTags(tagsList);
+    }, [recipes]);
+
     return (
         <SafeAreaView style={styles.container}>
             <Input pressable onPress={() => navigation.navigate("Search")} />
@@ -46,11 +62,10 @@ const Home = ({ navigation }) => {
             />
 
             <Categories
-                categories={["All", "Trending"]}
-                selectedCategory="All"
-                onCategoryPress={() => {}}
+                categories={tags}
+                selectedCategory={selectedTag}
+                onCategoryPress={setSelectedTag}
             />
-
             <FlatList
                 horizontal
                 data={recipes}
