@@ -3,10 +3,10 @@ import { Image, Text, View } from "react-native";
 import styles from "./StylesRecipeCard";
 import Rating from "../Rating/Rating";
 
-const RecipeCard = ({ title, image, author, rating, time }) => {
+const RecipeCard = ({ title, image, author, rating, time, style }) => {
     return (
         //
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
             <View style={styles.row}>
                 <View style={{ flex: 1 }}>
                     <Text numberOfLines={1} style={styles.title}>
