@@ -35,7 +35,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     footerText: { color: colors.lightGrey2, fontSize: 11 },
-    authorImage: { width: 24, height: 24, marginRight: 8, borderRadius: 20 },
+    authorImage: {
+        width: 24,
+        height: 24,
+        marginRight: 8,
+        borderRadius: 20,
+        backgroundColor: colors.lightGrey,
+    },
     timerIcon: { width: 17, height: 17, marginRight: 8 },
     image: {
         width: 80,

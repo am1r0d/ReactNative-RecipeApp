@@ -14,9 +14,9 @@ const Stack = createStackNavigator();
 // context
 export const RecipesContext = React.createContext();
 export const HealthyRecipesContext = React.createContext();
+
 //
 const BackButton = (props) => {
-    console.log("props:>>", props);
     return (
         <Pressable onPress={props.onPress}>
             <Image style={styles.back} source={require("./assets/back.png")} />
@@ -37,15 +37,14 @@ export default function App() {
     // useState
     const [recipes, setRecipes] = useState([]);
     const [healthyRecipes, setHealthyRecipes] = useState([]);
-
     //
     useEffect(() => {
-        async () => {
+        (async () => {
             const rec = await handleRecipesFetch();
             setRecipes(rec);
             const healthyRec = await handleRecipesFetch("healthy", "5");
             setHealthyRecipes(healthyRec);
-        };
+        })();
     }, []);
 
     const handleRecipesFetch = async (tags, size) => {
