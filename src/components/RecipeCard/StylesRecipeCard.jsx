@@ -42,5 +42,11 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         marginTop: -40,
     },
+    footer: {
+        justifyContent: "space-between",
+        marginTop: 8,
+        flexDirection: "row",
+        alignItems: "center",
+    },
 });
 export default styles;

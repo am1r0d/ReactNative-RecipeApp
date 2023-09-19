@@ -1,15 +1,21 @@
 import React from "react";
 import { Image, Text, View } from "react-native";
 import styles from "./StylesRecipeCard";
+import Rating from "../Rating/Rating";
 
 const RecipeCard = ({ title, image, author, rating, time }) => {
     return (
         //
         <View style={styles.container}>
             <View style={styles.row}>
-                <Text numberOfLines={1} style={styles.title}>
-                    {title}
-                </Text>
+                <View style={{ flex: 1 }}>
+                    <Text numberOfLines={1} style={styles.title}>
+                        {title}
+                    </Text>
+                    {/* Raring component */}
+                    <Rating rating={4.4} />
+                </View>
+
                 <Image
                     style={styles.image}
                     source={{
@@ -19,7 +25,7 @@ const RecipeCard = ({ title, image, author, rating, time }) => {
             </View>
 
             {/*  */}
-            <View style={[styles.row, { justifyContent: "space-between" }]}>
+            <View style={styles.footer}>
                 <View style={styles.row}>
                     <Image
                         style={styles.authorImage}
