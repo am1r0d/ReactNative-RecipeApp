@@ -5,14 +5,15 @@ import Search from "./src/screens/Search/Search";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import "react-native-gesture-handler";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getRecipesList } from "./src/http/http";
 
 // Stack navigation
 const Stack = createStackNavigator();
 
 // context
 export const RecipesContext = React.createContext();
-
+export const HealthyRecipesContext = React.createContext();
 //
 const BackButton = (props) => {
     console.log("props:>>", props);
@@ -33,49 +34,67 @@ const theme = {
 };
 
 export default function App() {
+    // useState
     const [recipes, setRecipes] = useState([]);
+    const [healthyRecipes, setHealthyRecipes] = useState([]);
+
     //
     useEffect(() => {
-        handleRecipesFetch();
+        async () => {
+            const rec = await handleRecipesFetch();
+            setRecipes(rec);
+            const healthyRec = await handleRecipesFetch("healthy", "5");
+            setHealthyRecipes(healthyRec);
+        };
     }, []);
-    const handleRecipesFetch = async () => {
+
+    const handleRecipesFetch = async (tags, size) => {
         try {
-            const recipes = await getRecipesList();
-            setRecipes(recipes?.data?.results);
+            const recipes = await getRecipesList(tags, size);
+            return recipes?.data?.results;
         } catch (e) {
             console.log("error fetching recipes:>>", e);
         }
     };
 
     return (
-        <RecipesContext.Provider value={{ recipes, setRecipes }}>
-            <NavigationContainer theme={theme}>
-                <Stack.Navigator
-                    screenOptions={{
-                        headerTitleAlign: "center",
-                        headerShadowVisible: false,
-                    }}
-                >
-                    <Stack.Screen
-                        name="Splash"
-                        component={Splash}
-                        options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                        name="Home"
-                        component={Home}
-                        options={{ headerLeft: null, gestureEnabled: false }}
-                    />
-                    <Stack.Screen
-                        name="Search"
-                        component={Search}
-                        options={{
-                            headerLeft: (props) => <BackButton {...props} />,
+        <HealthyRecipesContext.Provider
+            value={{ healthyRecipes, setHealthyRecipes }}
+        >
+            <RecipesContext.Provider value={{ recipes, setRecipes }}>
+                <NavigationContainer theme={theme}>
+                    <Stack.Navigator
+                        screenOptions={{
+                            headerTitleAlign: "center",
+                            headerShadowVisible: false,
                         }}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </RecipesContext.Provider>
+                    >
+                        <Stack.Screen
+                            name="Splash"
+                            component={Splash}
+                            options={{ headerShown: false }}
+                        />
+                        <Stack.Screen
+                            name="Home"
+                            component={Home}
+                            options={{
+                                headerLeft: null,
+                                gestureEnabled: false,
+                            }}
+                        />
+                        <Stack.Screen
+                            name="Search"
+                            component={Search}
+                            options={{
+                                headerLeft: (props) => (
+                                    <BackButton {...props} />
+                                ),
+                            }}
+                        />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </RecipesContext.Provider>
+        </HealthyRecipesContext.Provider>
     );
 }
 

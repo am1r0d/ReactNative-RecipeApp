@@ -6,11 +6,14 @@ import Title from "../../components/Title/Title";
 import Categories from "../../components/Categories/Categories";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import Card from "../../components/Card/Card";
-import { RecipesContext } from "../../../App";
+import { HealthyRecipesContext, RecipesContext } from "../../../App";
 
 const Home = ({ navigation }) => {
     const { recipes } = useContext(RecipesContext);
-    console.log("recipes:>>", recipes);
+    const { healthyRecipes } = useContext(HealthyRecipesContext);
+
+    // console.log("recipes:>>", recipes);
+    console.log("healthyRecipes:>>", healthyRecipes);
     return (
         <SafeAreaView style={styles.container}>
             <Input pressable onPress={() => navigation.navigate("Search")} />
