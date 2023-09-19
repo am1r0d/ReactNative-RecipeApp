@@ -34,6 +34,19 @@ const theme = {
 
 export default function App() {
     const [recipes, setRecipes] = useState([]);
+    //
+    useEffect(() => {
+        handleRecipesFetch();
+    }, []);
+    const handleRecipesFetch = async () => {
+        try {
+            const recipes = await getRecipesList();
+            setRecipes(recipes?.data?.results);
+        } catch (e) {
+            console.log("error fetching recipes:>>", e);
+        }
+    };
+
     return (
         <RecipesContext.Provider value={{ recipes, setRecipes }}>
             <NavigationContainer theme={theme}>

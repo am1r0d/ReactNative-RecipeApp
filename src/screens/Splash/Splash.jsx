@@ -1,25 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Image, ImageBackground, Text, View } from "react-native";
 import styles from "./StylesSplash";
 import Button from "../../components/Button/Button";
-import { getRecipesList } from "../../http/http";
-import { RecipesContext } from "../../../App";
 
 const Splash = ({ navigation }) => {
-    const { setRecipes } = useContext(RecipesContext);
-    //
-    useEffect(() => {
-        handleRecipesFetch();
-    }, []);
-    const handleRecipesFetch = async () => {
-        try {
-            const recipes = await getRecipesList();
-            setRecipes(recipes?.data?.results);
-        } catch (e) {
-            console.log("error fetching recipes:>>", e);
-        }
-    };
-
     //
     return (
         <ImageBackground
