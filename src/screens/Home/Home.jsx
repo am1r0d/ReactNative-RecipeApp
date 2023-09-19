@@ -24,7 +24,7 @@ const Home = ({ navigation }) => {
                 horizontal
                 data={healthyRecipes}
                 style={{ marginHorizontal: -24 }}
-                keyExtractor={(item) => String(item)}
+                keyExtractor={(item) => String(item?.id)}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item, index }) => (
                     <RecipeCard
@@ -53,15 +53,25 @@ const Home = ({ navigation }) => {
 
             <FlatList
                 horizontal
-                data={[1, 2, 3, 4]}
+                data={recipes}
                 style={{ marginHorizontal: -24 }}
                 keyExtractor={(item) => String(item)}
                 showsHorizontalScrollIndicator={false}
-                renderItem={(index) => (
+                renderItem={({ item, index }) => (
                     <Card
                         style={index === 0 ? { marginLeft: 24 } : {}}
-                        title="Steak with tomato sauce and bulgur rice."
-                        time="20 mins"
+                        title={item?.name}
+                        servings={item?.num_servings}
+                        image={item?.thumbnail_url}
+                        rating={item?.user_ratings?.score}
+                        author={
+                            item?.credits?.length
+                                ? {
+                                      name: item?.credits[0]?.name,
+                                      image: item?.credits[0]?.image_url,
+                                  }
+                                : null
+                        }
                     />
                 )}
             />

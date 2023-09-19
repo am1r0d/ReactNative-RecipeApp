@@ -2,7 +2,7 @@ import React from "react";
 import { Image, Text, View } from "react-native";
 import styles from "./StylesCard";
 
-const Card = ({ title, image, time, style }) => {
+const Card = ({ title, image, servings, style }) => {
     return (
         //
         <View style={[styles.container, style]}>
@@ -10,14 +10,18 @@ const Card = ({ title, image, time, style }) => {
                 <Image
                     style={styles.image}
                     source={{
-                        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmkH0mfiD7EvLivall1hq0zkntcFg-yLtlTZv2KmMgye8Ip-Tl9w7zI_F7wBURa4iFQg4&usqp=CAU",
+                        uri: image,
                     }}
                 />
                 <Text numberOfLines={3} style={styles.title}>
                     {title}
                 </Text>
-                <Text style={styles.label}>Time</Text>
-                <Text style={styles.value}>{time}</Text>
+                {servings ? (
+                    <>
+                        <Text style={styles.label}>Servings</Text>
+                        <Text style={styles.value}>{servings}</Text>
+                    </>
+                ) : null}
             </View>
         </View>
     );

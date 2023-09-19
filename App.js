@@ -40,7 +40,7 @@ export default function App() {
     //
     useEffect(() => {
         (async () => {
-            const rec = await handleRecipesFetch();
+            const rec = await handleRecipesFetch(null, "15");
             setRecipes(rec);
             const healthyRec = await handleRecipesFetch("healthy", "5");
             setHealthyRecipes(healthyRec);
