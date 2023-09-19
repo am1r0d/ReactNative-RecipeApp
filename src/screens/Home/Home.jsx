@@ -5,6 +5,7 @@ import Input from "../../components/Input/Input";
 import Title from "../../components/Title/Title";
 import Categories from "../../components/Categories/Categories";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
+import Card from "../../components/Card/Card";
 
 const Home = ({ navigation }) => {
     return (
@@ -36,6 +37,21 @@ const Home = ({ navigation }) => {
                 categories={["All", "Trending"]}
                 selectedCategory="All"
                 onCategoryPress={() => {}}
+            />
+
+            <FlatList
+                horizontal
+                data={[1, 2, 3]}
+                style={{ marginHorizontal: -24 }}
+                keyExtractor={(item) => String(item)}
+                showsHorizontalScrollIndicator={false}
+                renderItem={(index) => (
+                    <Card
+                        style={index === 0 ? { marginLeft: 24 } : {}}
+                        title="Steak with tomato sauce and bulgur rice."
+                        time="20 mins"
+                    />
+                )}
             />
         </SafeAreaView>
     );
