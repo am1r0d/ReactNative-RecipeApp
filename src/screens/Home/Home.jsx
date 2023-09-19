@@ -2,10 +2,13 @@ import React from "react";
 import { Text, SafeAreaView } from "react-native";
 import styles from "./StylesHome";
 
-const Home = () => {
+const Home = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.background}>
-            <Text>Home</Text>
+            <Text>Welcome</Text>
+            <Text onPress={() => navigation.navigate("Search")}>
+                Go to Search
+            </Text>
         </SafeAreaView>
     );
 };
