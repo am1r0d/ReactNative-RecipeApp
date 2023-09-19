@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     input: {
         color: colors.black,
         fontSize: 14,
+        flex: 1,
     },
     icon: { width: 16, height: 16, marginRight: 16 },
 });

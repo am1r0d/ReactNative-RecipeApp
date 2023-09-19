@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, SafeAreaView } from "react-native";
 import styles from "./StylesSearch";
+import Input from "../../components/Input/Input";
 
 const Search = () => {
     return (
-        <SafeAreaView style={styles.background}>
-            <Text>Search</Text>
+        <SafeAreaView style={styles.container}>
+            <Input />
         </SafeAreaView>
     );
 };

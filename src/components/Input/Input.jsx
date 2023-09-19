@@ -1,11 +1,11 @@
 import React from "react";
-import { Text, Image, TextInput, View } from "react-native";
+import { Pressable, Image, TextInput, View } from "react-native";
 import styles from "./StylesInput";
 import colors from "../../constants/colors";
 
-const Input = ({ placeholder, showSearchIcon, style }) => {
-    return (
-        <View style={styles.container}>
+const Input = ({ placeholder, showSearchIcon, pressable, onPress, style }) => {
+    const renderInput = () => (
+        <View style={[styles.container, style]}>
             {showSearchIcon ? (
                 <Image
                     style={styles.icon}
@@ -13,12 +13,18 @@ const Input = ({ placeholder, showSearchIcon, style }) => {
                 />
             ) : null}
             <TextInput
+                editable={!pressable}
                 placeholderTextColor={colors.lightGrey}
                 style={styles.input}
                 placeholder={placeholder}
             />
         </View>
     );
+
+    if (pressable) {
+        return <Pressable onPress={onPress}>{renderInput()}</Pressable>;
+    }
+    return renderInput();
 };
 
 Input.defaultProps = {
