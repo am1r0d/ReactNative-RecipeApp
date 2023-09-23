@@ -21,3 +21,8 @@
          'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
         }
     ```
+
+![Recipe](https://github.com/am1r0d/ReactNative-RecipeApp/assets/106912785/e11a0378-a3b6-4bfe-8178-343b43e60c9f)
+
+
+
