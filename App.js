@@ -7,6 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import "react-native-gesture-handler";
 import React, { useState, useEffect } from "react";
 import { getRecipesList } from "./src/http/http";
+import RecipeDetails from "./src/screens/RecipeDetails/RecipeDetails";
 
 // Stack navigation
 const Stack = createStackNavigator();
@@ -88,6 +89,16 @@ export default function App() {
                                 headerLeft: (props) => (
                                     <BackButton {...props} />
                                 ),
+                            }}
+                        />
+                        <Stack.Screen
+                            name="RecipeDetails"
+                            component={RecipeDetails}
+                            options={{
+                                headerLeft: (props) => (
+                                    <BackButton {...props} />
+                                ),
+                                title: "",
                             }}
                         />
                     </Stack.Navigator>
