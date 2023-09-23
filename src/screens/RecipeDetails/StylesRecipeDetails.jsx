@@ -24,6 +24,14 @@ const styles = StyleSheet.create({
     },
     key: { fontSize: 12, color: colors.black, textTransform: "capitalize" },
     value: { fontSize: 12, color: colors.lightGrey2 },
+
+    instructionRow: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginVertical: 8,
+    },
+    index: { fontSize: 20, color: colors.grey2, marginRight: 16 },
+    instructionText: { fontSize: 14, color: colors.black, flex: 1 },
 });
 
 export default styles;
